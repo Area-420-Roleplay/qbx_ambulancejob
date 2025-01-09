@@ -252,24 +252,27 @@ local function createGarage(vehicles, coords)
         debug = config.debugPoly,
         onEnter = function()
             if QBX.PlayerData.job.type == 'ems' and QBX.PlayerData.job.onduty then
-                lib.showTextUI(locale('text.veh_button'))
+                exports['jg-textui']:DrawText(locale('text.veh_button')) -- Use the export for showing text
             end
         end,
         onExit = function()
             local _, text = lib.isTextUIOpen()
-            if text == locale('text.veh_button') then lib.hideTextUI() end
+            if text == locale('text.veh_button') then
+                exports['jg-textui']:HideText() -- Use the export for hiding text
+            end
         end,
         inside = function()
             if QBX.PlayerData.job.type == 'ems' and QBX.PlayerData.job.onduty and IsControlJustPressed(0, 38) then
                 if cache.vehicle then
                     DeleteEntity(cache.vehicle)
-            else
-                showGarageMenu(vehicles, coords)
+                else
+                    showGarageMenu(vehicles, coords)
                 end
             end
         end,
     })
 end
+
 
 ---Creates air and land garages to spawn vehicles at for EMS personnel
 CreateThread(function()
@@ -289,7 +292,7 @@ if config.useTarget then
             exports.ox_target:addBoxZone({
                 name = 'duty' .. i,
                 coords = sharedConfig.locations.duty[i],
-                size = vec3(1.5, 1, 2),
+                size = vec3(0.2, 1.5, 2),
                 rotation = 71,
                 debug = config.debugPoly,
                 canInteract = function()
@@ -311,8 +314,8 @@ if config.useTarget then
             exports.ox_target:addBoxZone({
                 name = 'stash' .. i,
                 coords = sharedConfig.locations.stash[i].location,
-                size = vec3(1, 1, 2),
-                rotation = -20,
+                size = vec3(2, 1, 2),
+                rotation = 250,
                 debug = config.debugPoly,
                 canInteract = function()
                     return QBX.PlayerData.job.type == 'ems'
@@ -336,7 +339,7 @@ if config.useTarget then
                 exports.ox_target:addBoxZone({
                     name = 'armory' .. i .. ':' .. ii,
                     coords = sharedConfig.locations.armory[i].locations[ii],
-                    size = vec3(1, 1, 2),
+                    size = vec3(1, 1.5, 2),
                     rotation = -20,
                     debug = config.debugPoly,
                     canInteract = function()
@@ -402,11 +405,13 @@ else
                 onEnter = function()
                     if QBX.PlayerData.job.type ~= 'ems' then return end
                     local label = QBX.PlayerData.job.onduty and locale('text.onduty_button') or locale('text.offduty_button')
-                    lib.showTextUI(label)
+                    exports['jg-textui']:DrawText(label) -- Use the export for showing text
                 end,
                 onExit = function()
                     local _, text = lib.isTextUIOpen()
-                    if text == locale('text.onduty_button') or text == locale('text.offduty_button') then lib.hideTextUI() end
+                    if text == locale('text.onduty_button') or text == locale('text.offduty_button') then
+                        exports['jg-textui']:HideText() -- Use the export for hiding text
+                    end
                 end,
                 inside = function()
                     if QBX.PlayerData.job.type ~= 'ems' then return end
@@ -423,11 +428,13 @@ else
                 debug = config.debugPoly,
                 onEnter = function()
                     if QBX.PlayerData.job.type ~= 'ems' or not QBX.PlayerData.job.onduty then return end
-                    lib.showTextUI(locale('text.pstash_button'))
-                    end,
+                    exports['jg-textui']:DrawText(locale('text.pstash_button')) -- Use the export for showing text
+                end,
                 onExit = function()
                     local _, text = lib.isTextUIOpen()
-                    if text == locale('text.pstash_button') then lib.hideTextUI() end
+                    if text == locale('text.pstash_button') then
+                        exports['jg-textui']:HideText() -- Use the export for hiding text
+                    end
                 end,
                 inside = function()
                     if QBX.PlayerData.job.type ~= 'ems' then return end
@@ -447,11 +454,13 @@ else
                     debug = config.debugPoly,
                     onEnter = function()
                         if QBX.PlayerData.job.type ~= 'ems' or not QBX.PlayerData.job.onduty then return end
-                        lib.showTextUI(locale('text.armory_button'))
-                        end,
+                        exports['jg-textui']:DrawText(locale('text.armory_button')) -- Use the export for showing text
+                    end,
                     onExit = function()
                         local _, text = lib.isTextUIOpen()
-                        if text == locale('text.armory_button') then lib.hideTextUI() end
+                        if text == locale('text.armory_button') then
+                            exports['jg-textui']:HideText() -- Use the export for hiding text
+                        end
                     end,
                     inside = function()
                         if QBX.PlayerData.job.type ~= 'ems' then return end
@@ -470,11 +479,13 @@ else
             debug = config.debugPoly,
             onEnter = function()
                 local label = QBX.PlayerData.job.onduty and locale('text.elevator_main') or locale('error.not_ems')
-                lib.showTextUI(label)
+                exports['jg-textui']:DrawText(label) -- Use the export for showing text
             end,
             onExit = function()
                 local _, text = lib.isTextUIOpen()
-                if text == locale('text.elevator_main') or text == locale('error.not_ems') then lib.hideTextUI() end
+                if text == locale('text.elevator_main') or text == locale('error.not_ems') then
+                    exports['jg-textui']:HideText() -- Use the export for hiding text
+                end
             end,
             inside = function()
                 OnKeyPress(teleportToMainElevator)
@@ -488,11 +499,13 @@ else
             debug = config.debugPoly,
             onEnter = function()
                 local label = QBX.PlayerData.job.onduty and locale('text.elevator_roof') or locale('error.not_ems')
-                lib.showTextUI(label)
+                exports['jg-textui']:DrawText(label) -- Use the export for showing text
             end,
             onExit = function()
                 local _, text = lib.isTextUIOpen()
-                if text == locale('text.elevator_roof') or text == locale('error.not_ems') then lib.hideTextUI() end
+                if text == locale('text.elevator_roof') or text == locale('error.not_ems') then
+                    exports['jg-textui']:HideText() -- Use the export for hiding text
+                end
             end,
             inside = function()
                 OnKeyPress(teleportToRoofElevator)
@@ -500,3 +513,4 @@ else
         })
     end)
 end
+

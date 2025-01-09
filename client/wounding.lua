@@ -15,8 +15,8 @@ lib.callback.register('hospital:client:UseIfaks', function()
             mouse = false,
         },
         anim = {
-            dict = 'mp_suicide',
-            clip = 'pill',
+            dict = 'missheistdockssetup1clipboard@idle_a',
+            clip = 'idle_c',
         },
     })
     then
@@ -51,8 +51,8 @@ lib.callback.register('hospital:client:UseBandage', function()
             mouse = false,
         },
         anim = {
-            dict = 'mp_suicide',
-            clip = 'pill',
+            dict = 'missheistdockssetup1clipboard@idle_a',
+            clip = 'idle_c',
         },
     })
     then

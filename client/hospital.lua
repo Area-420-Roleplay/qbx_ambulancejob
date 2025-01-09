@@ -136,8 +136,8 @@ if config.useTarget then
                     exports.ox_target:addBoxZone({
                         name = hospitalName..'_checkin_'..i,
                         coords = hospital.checkIn[i],
-                        size = vec3(2, 1, 2),
-                        rotation = 18,
+                        size = vec3(2, 1.5, 2),
+                        rotation = 70,
                         debug = config.debugPoly,
                         options = {
                             {
@@ -153,7 +153,7 @@ if config.useTarget then
                 end
             end
 
-            for i = 1, #hospital.beds do
+            --[[for i = 1, #hospital.beds do
                 local bed = hospital.beds[i]
                 exports.ox_target:addBoxZone({
                     name = hospitalName..'_bed_'..i,
@@ -166,7 +166,7 @@ if config.useTarget then
                             onSelect = function()
                                 putPlayerInBed(hospitalName, i, false)
                             end,
-                            icon = 'fas fa-clipboard',
+                            icon = 'fas fa-plus',
                             label = locale('text.bed'),
                             distance = 3.0,
                         },
@@ -181,13 +181,13 @@ if config.useTarget then
                                     TriggerServerEvent('hospital:server:putPlayerInBed', playerId, hospitalName, i)
                                 end
                             end,
-                            icon = 'fas fa-clipboard',
+                            icon = 'fas fa-plus',
                             label = locale('text.put_bed'),
                             distance = 3.0,
                         }
                     }
                 })
-            end
+            end]]
         end
     end)
 else
@@ -202,13 +202,13 @@ else
                     onEnter = function()
                         local numDoctors = lib.callback.await('qbx_ambulancejob:server:getNumDoctors')
                         if numDoctors >= sharedConfig.minForCheckIn then
-                            lib.showTextUI(locale('text.call_doc'))
+                            exports['jg-textui']:DrawText(locale('text.call_doc')) -- Use the export for showing text
                         else
-                            lib.showTextUI(locale('text.check_in'))
+                            exports['jg-textui']:DrawText(locale('text.check_in')) -- Use the export for showing text
                         end
                     end,
                     onExit = function()
-                        lib.hideTextUI()
+                        exports['jg-textui']:HideText() -- Use the export for hiding text
                     end,
                     inside = function()
                         if IsControlJustPressed(0, 38) then
@@ -227,15 +227,15 @@ else
                     debug = config.debugPoly,
                     onEnter = function()
                         if not IsInHospitalBed then
-                            lib.showTextUI(locale('text.lie_bed'))
+                            exports['jg-textui']:DrawText(locale('text.lie_bed')) -- Use the export for showing text
                         end
                     end,
                     onExit = function()
-                        lib.hideTextUI()
+                        exports['jg-textui']:HideText() -- Use the export for hiding text
                     end,
                     inside = function()
                         if IsControlJustPressed(0, 38) then
-                            lib.hideTextUI()
+                            exports['jg-textui']:HideText() -- Use the export for hiding text
                             putPlayerInBed(hospitalName, i, false)
                         end
                     end,
@@ -275,12 +275,12 @@ end
 CreateThread(function()
     while true do
         if IsInHospitalBed and CanLeaveBed then
-            lib.showTextUI(locale('text.bed_out'))
+            exports['jg-textui']:DrawText(locale('text.bed_out')) -- Use the export for showing text
             while IsInHospitalBed and CanLeaveBed do
                 OnKeyPress(leaveBed)
                 Wait(0)
             end
-            lib.hideTextUI()
+            exports['jg-textui']:HideText() -- Use the export for hiding text
         else
             Wait(1000)
         end
@@ -300,3 +300,4 @@ AddEventHandler('onResourceStop', function(resourceName)
     if cache.resource ~= resourceName then return end
     onPlayerUnloaded()
 end)
+

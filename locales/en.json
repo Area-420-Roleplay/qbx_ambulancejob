@@ -1,7 +1,7 @@
 {
     "error": {
         "canceled": "Canceled",
-        "impossible": "Action Impossible...",
+        "impossible": "Action Impossible",
         "no_player": "No Player Nearby",
         "no_firstaid": "You need a First Aid Kit",
         "no_bandage": "You need a Bandage",
@@ -14,7 +14,7 @@
         "revived": "You revived a person",
         "healthy_player": "Player is Healthy",
         "helped_player": "You helped the person",
-        "being_helped": "You are being helped..."
+        "being_helped": "You are being helped"
     },
     "info": {
         "civ_died": "Civilian Died",
@@ -54,34 +54,34 @@
         "status": "Health Status"
     },
     "text": {
-        "pstash_button": "[E] - Personal stash",
-        "pstash": "Personal stash",
-        "onduty_button": "[E] - Go On Duty",
-        "offduty_button": "[E] - Go Off Duty",
+        "pstash_button": "[E] Personal Locker",
+        "pstash": "Personal Locker",
+        "onduty_button": "[E] Go On Duty",
+        "offduty_button": "[E] Go Off Duty",
         "duty": "On/Off Duty",
-        "armory_button": "[E] - Armory",
+        "armory_button": "[E] Armory",
         "armory": "Armory",
-        "veh_button": "[E] - Grab / Store Vehicle",
-        "elevator_roof": "[E] - Take the elevator to the roof",
-        "elevator_main": "[E] - Take the elevator down",
-        "el_roof": "Take the elevator to the roof",
-        "el_main": "Take the elevator to the main floor",
-        "call_doc": "[E] - Call doctor",
+        "veh_button": "[E] Grab / Store Vehicle",
+        "elevator_roof": "[E] Take elevator to the roof",
+        "elevator_main": "[E] Take elevator down",
+        "el_roof": "Take elevator to roof",
+        "el_main": "Take elevator to main floor",
+        "call_doc": "[E] Call doctor",
         "call": "Call",
         "check_in": "[E] Check in",
         "check": "Check In",
-        "lie_bed": "[E] - To lay in bed",
-        "bed": "Lay in bed",
-        "put_bed": "Place citizen in bed",
-        "bed_out": "[E] - To get out of bed..",
+        "lie_bed": "[E] To lay in bed",
+        "bed": "Heal",
+        "put_bed": "Place in bed",
+        "bed_out": "[E] To get out of bed",
         "alert": "Alert!"
     },
     "progress": {
-        "ifaks": "Taking ifaks...",
-        "bandage": "Using Bandage...",
-        "painkillers": "Taking Painkillers...",
-        "revive": "Reviving Person...",
-        "healing": "Healing Wounds...",
-        "checking_in": "Checking in..."
+        "ifaks": "Using ifaks",
+        "bandage": "Using Bandage",
+        "painkillers": "Taking Painkillers",
+        "revive": "Reviving Person",
+        "healing": "Healing Wounds",
+        "checking_in": "Checking in"
     }
 }

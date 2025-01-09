@@ -1,6 +1,6 @@
 local sharedConfig = require 'config.shared'
-InBedDict = 'anim@gangops@morgue@table@'
-InBedAnim = 'body_search'
+InBedDict = 'misslamar1dead_body'
+InBedAnim = 'dead_idle'
 IsInHospitalBed = false
 HealAnimDict = 'mini@cpr@char_a@cpr_str'
 HealAnim = 'cpr_pumpchest'
@@ -84,10 +84,10 @@ end)
 CreateThread(function()
     for _, station in pairs(sharedConfig.locations.stations) do
         local blip = AddBlipForCoord(station.coords.x, station.coords.y, station.coords.z)
-        SetBlipSprite(blip, 61)
+        SetBlipSprite(blip, 153)
         SetBlipAsShortRange(blip, true)
-        SetBlipScale(blip, 0.8)
-        SetBlipColour(blip, 25)
+        SetBlipScale(blip, 0.9)
+        SetBlipColour(blip, 6)
         BeginTextCommandSetBlipName('STRING')
         AddTextComponentString(station.label)
         EndTextCommandSetBlipName(blip)
@@ -100,7 +100,7 @@ end
 
 function OnKeyPress(cb)
     if IsControlJustPressed(0, 38) then
-        lib.hideTextUI()
+        exports['jg-textui']:HideText() -- Use the export to hide text UI
         cb()
     end
 end

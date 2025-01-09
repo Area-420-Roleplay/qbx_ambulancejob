@@ -32,7 +32,7 @@ end)
 ---@param src number
 local function billPlayer(src)
 	local player = exports.qbx_core:GetPlayer(src)
-	player.Functions.RemoveMoney('bank', sharedConfig.checkInCost, 'respawned-at-hospital')
+	player.Functions.RemoveMoney('bank', sharedConfig.checkInCost, 'Medical Bill')
 	config.depositSociety('ambulance', sharedConfig.checkInCost)
 	TriggerClientEvent('hospital:client:SendBillEmail', src, sharedConfig.checkInCost)
 end
